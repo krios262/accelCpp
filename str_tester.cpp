@@ -3,12 +3,16 @@
 #include <iostream>
 #include "str.h"
 
+using std::cin;
 using std::cout;
 using std::endl;
 
 int main()
 {
-    Str s("Testing");
+    Str s = "Testing: enter your name: ";
+    cout << s;
+
+    cin >> s;
     cout << s << endl;
 
     return 0;

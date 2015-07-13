@@ -33,12 +33,14 @@ class Str {
 
         size_type size() const { return data.size(); }
 
+    // input operator
+    friend std::istream& operator>>(std::istream&, Str&);
+
     private:
         Vec<char> data;
 };
 
-// input and output operators
-//std::istream& operator>>(std::istream&, Str&);
+// output operator
 std::ostream& operator<<(std::ostream&, const Str&);
 
 #endif
