@@ -2,6 +2,8 @@
 #define __vec_h
 
 // Vec class from Accelerated C++
+// Evan Thompson
+
 #include <memory>
 
 // This class is a stripped-down version of std::vector
@@ -42,6 +44,10 @@ template <class T> class Vec {
                 grow();
             unchecked_append(val); // append the new element
         }
+
+        void clear() { uncreate(); } // clear deallocates (for implementation convenience)
+        iterator erase(iterator);
+            
 
     private:
         iterator data; // first element
@@ -139,4 +145,20 @@ template <class T> void Vec<T>::unchecked_append(const T& val)
 {
     alloc.construct(avail++, val);
 }
+
+// remove one element from the vector
+// shifts all elements after the removed one
+template <class T> typename Vec<T>::iterator Vec<T>::erase(iterator position) {
+    if (position < data || position >= avail) // invalid position
+        return NULL;
+
+    // erase desired position by overwriting with subsequent elements
+    std::copy (position + 1, avail, position);
+
+    // destroy last element, which is now a duplicate after the copy
+    alloc.destroy(avail--);
+
+    return position;
+}
+
 #endif

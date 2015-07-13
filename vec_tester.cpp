@@ -24,5 +24,15 @@ int main()
     v2[0] = 1;
     cout << v[0] << endl;
 
+    v2.clear();
+    v2.push_back(5);
+    cout << v2[0] << " size: " << v2.size() << endl;
+
+    v2.erase(v2.begin());
+    cout << v2.size() << endl;
+
+    v.erase(v.begin());
+    cout << v[0] << v[1] << " size: " << v.size() << endl;
+
     return 0;
 }
